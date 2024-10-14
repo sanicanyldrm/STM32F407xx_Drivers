@@ -11,6 +11,21 @@
 
 #include "stdint.h"
 
+/********************************************************************************************
+ * Generic Macro Definitions
+********************************************************************************************/
+/*
+ * Volatile definition macrro
+ */
+#define vo volatile
+
+
+
+
+
+/********************************************************************************************
+ * ARM Cortex M4 Processor NVIC registers address definitions
+********************************************************************************************/
 /*
  * ARM Cortex M4 Processor NVIC ISERx register addresses
  */
@@ -39,11 +54,7 @@
 
 
 
-/*
- * volatile macro defition
- */
 
-#define vo volatile
 
 /**************************************************************************************************************************************************************
  * Base address of these peripheral
@@ -51,7 +62,7 @@
  * -APB1, APB2, AHB1, AHB2
  * -GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI
  * -I2C1, I2C2, I2C3, SPI2, SPI3, USART2, USART3, UART4, UART5,
- * -SPI1, USART1, USART6, EXTI, SYSFG
+ * -SPI1, USART1, USART6, EXTI, SYSCFG, RCC
  *************************************************************************************************************************************************************/
 
 
@@ -105,48 +116,7 @@
 #define RCC_BASEADDR								(AHB1PERIPH_BASEADDR + 0x3800)		//Base address of RCC offset: 0x3800
 
 
-/*
- *-GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI definition macro ( Peripheral base address typecasted to GPIO_RegDef_t)
- */
 
-#define GPIOA										((GPIO_RegDef_t*)GPIOA_BASEADDR)
-#define GPIOB										((GPIO_RegDef_t*)GPIOB_BASEADDR)
-#define GPIOC										((GPIO_RegDef_t*)GPIOC_BASEADDR)
-#define GPIOD										((GPIO_RegDef_t*)GPIOD_BASEADDR)
-#define GPIOE										((GPIO_RegDef_t*)GPIOE_BASEADDR)
-#define GPIOF										((GPIO_RegDef_t*)GPIOF_BASEADDR)
-#define GPIOG										((GPIO_RegDef_t*)GPIOG_BASEADDR)
-#define GPIOH										((GPIO_RegDef_t*)GPIOH_BASEADDR)
-#define GPIOI										((GPIO_RegDef_t*)GPIOI_BASEADDR)
-
-/*
- * RCC definition macro (RCC base address typecasted to RCC_RegDef_t)
- */
-
-#define RCC											((RCC_RegDef_t*)RCC_BASEADDR)
-
-/*
- * EXTI definition macro (EXTI base address typecasted to EXTI_RegDef_t)
- */
-
-#define EXTI 										((EXTI_RegDef_t*)EXTI_BASEADDR)
-
-/*
- * SYSCFG definition macro (SYSCFG base address typecasted to SYSCFG_RegDef_t)
- */
-
-
-#define SYSCFG										((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
-
-
-/*
- * SPI definition macro (SPI base address typecasted to SPI_RegDef_t)
- */
-
-#define SPI1 										((SPI_RegDef_t*)SPI1_BASEADDR)
-#define SPI2										((SPI_RegDef_t*)SPI2_BASEADDR)
-#define SPI3										((SPI_RegDef_t*)SPI3_BASEADDR)
-#define SPI4										((SPI_RegDef_t*)SPI4_BASEADDR)
 
 
 /*
@@ -192,6 +162,65 @@
 
 
 
+
+
+
+/********************************************************************************************
+ * Peripheral Base Address Macros
+********************************************************************************************/
+
+
+/*
+ *-GPIOA, GPIOB, GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH, GPIOI definition macro ( Peripheral base address typecasted to GPIO_RegDef_t)
+ */
+
+#define GPIOA										((GPIO_RegDef_t*)GPIOA_BASEADDR)
+#define GPIOB										((GPIO_RegDef_t*)GPIOB_BASEADDR)
+#define GPIOC										((GPIO_RegDef_t*)GPIOC_BASEADDR)
+#define GPIOD										((GPIO_RegDef_t*)GPIOD_BASEADDR)
+#define GPIOE										((GPIO_RegDef_t*)GPIOE_BASEADDR)
+#define GPIOF										((GPIO_RegDef_t*)GPIOF_BASEADDR)
+#define GPIOG										((GPIO_RegDef_t*)GPIOG_BASEADDR)
+#define GPIOH										((GPIO_RegDef_t*)GPIOH_BASEADDR)
+#define GPIOI										((GPIO_RegDef_t*)GPIOI_BASEADDR)
+
+/*
+ * RCC definition macro (RCC base address typecasted to RCC_RegDef_t)
+ */
+
+#define RCC											((RCC_RegDef_t*)RCC_BASEADDR)
+
+/*
+ * EXTI definition macro (EXTI base address typecasted to EXTI_RegDef_t)
+ */
+
+#define EXTI 										((EXTI_RegDef_t*)EXTI_BASEADDR)
+
+/*
+ * SYSCFG definition macro (SYSCFG base address typecasted to SYSCFG_RegDef_t)
+ */
+
+
+#define SYSCFG										((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+
+
+/*
+ * SPI definition macro (SPI base address typecasted to SPI_RegDef_t)
+ */
+
+#define SPI1 										((SPI_RegDef_t*)SPI1_BASEADDR)
+#define SPI2										((SPI_RegDef_t*)SPI2_BASEADDR)
+#define SPI3										((SPI_RegDef_t*)SPI3_BASEADDR)
+#define SPI4										((SPI_RegDef_t*)SPI4_BASEADDR)
+
+
+/*
+ * I2C definition macro (SPI base address typecasted to I2C_RegDef_t)
+ */
+
+#define I2C1										((I2C_RegDef_t*)I2C1_BASEADDR)
+#define I2C2										((I2C_RegDef_t*)I2C2_BASEADDR)
+#define I2C3										((I2C_RegDef_t*)I2C3_BASEADDR)
 
 
 /**************************************************************************************************************************************************************
@@ -309,6 +338,24 @@ typedef struct
 	vo uint32_t I2SPR;				//SPI I2S prescaler register								address offset: 0x20
 }SPI_RegDef_t;
 
+
+/*
+ * Peripheral register definition structure for I2C
+ */
+
+typedef struct
+{
+	vo uint32_t CR1;				//I2C control register 1									address offset: 0x00
+	vo uint32_t CR2;				//I2C control register 2									address offset: 0x04
+	vo uint32_t OAR1;				//I2C Own address register 1								address offset: 0x08
+	vo uint32_t OAR2;				//I2C Own address register 2								address offset: 0x0C
+	vo uint32_t DR;					//I2C Data register											address offset: 0x10
+	vo uint32_t SR1;				//I2C Status register 1			 							address offset: 0x14
+	vo uint32_t SR2;				//I2C Status register 2										address offset: 0x18
+	vo uint32_t CCR;				//I2C Clock control register								address offset: 0x1C
+	vo uint32_t TRISE;				//I2C TRISE register										address offset: 0x20
+	vo uint32_t FLTR;				//I2C FLTR register											address offset: 0x24
+}I2C_RegDef_t;
 
 
 
@@ -541,11 +588,104 @@ typedef struct
 #define SPI_SR_FRE							8
 
 
+/**************************************************************************************************************************************************************
+ * Bit position definitions of SPI peripheral
+ **************************************************************************************************************************************************************/
+/*
+ * Bit position definition I2C Control Register 1
+ */
+#define I2C_CR1_PE							0
+#define I2C_CR1_SMBUS						1
+//#define I2C_CR1_RESERVED					2
+#define I2C_CR1_SMBTYPE						3
+#define I2C_CR1_ENARP						4
+#define I2C_CR1_ENPEC						5
+#define I2C_CR1_ENGC						6
+#define I2C_CR1_NOSTRECH					7
+#define I2C_CR1_START						8
+#define I2C_CR1_STOP						9
+#define I2C_CR1_ACK							10
+#define I2C_CR1_POS							11
+#define I2C_CR1_PEC							12
+#define I2C_CR1_ALERT						13
+//#define I2C_CR1_RESERVED					14
+#define I2C_CR1_SWRST						15
+
+
+/*
+ * Bit position definition I2C Control Register 2
+ */
+#define I2C_CR2_FREQ_0_5					0
+//#define I2C_CR2_RESERVED					6
+//#define I2C_CR2_RESERVED					7
+#define I2C_CR2_ITERREN						8
+#define I2C_CR2_ITEVTEN						9
+#define I2C_CR2_ITBUFEN						10
+#define I2C_CR2_DMAEN						11
+#define I2C_CR2_LAST						12
+//#define I2C_CR2_RESERVED					13
+//#define I2C_CR2_RESERVED					14
+//#define I2C_CR2_RESERVED					15
+
+/*
+ * Bit position definition I2C Status Register 1
+ */
+#define I2C_SR1_SB							0
+#define I2C_SR1_ADDR						1
+#define I2C_SR1_BTF							2
+#define I2C_SR1_ADD10						3
+#define I2C_SR1_STOPF						4
+//#define I2C_SR1_RESERVED					5
+#define I2C_SR1_RXNE						6
+#define I2C_SR1_TXE							7
+#define I2C_SR1_BERR						8
+#define I2C_SR1_ARLO						9
+#define I2C_SR1_AF							10
+#define I2C_SR1_OVR							11
+#define I2C_SR1_PECERR						12
+//#define I2C_SR1_RESERVED					13
+#define I2C_SR1_TIMEOUT						14
+#define I2C_SR1_SMBALERT					15
+
+
+/*
+ * Bit position definition I2C Status Register 2
+ */
+#define I2C_SR2_MSL							0
+#define I2C_SR2_BUSY						1
+#define I2C_SR2_TRA							2
+//#define I2C_SR2_RESERVED					3
+#define I2C_SR2_GENCALL						4
+#define I2C_SR2_SMBDEFAULT					5
+#define I2C_SR2_SMBHOST						6
+#define I2C_SR2_DUALF						7
+#define I2C_SR2_PEC							15
+
+
+/*
+ * Bit position definition I2C Clock Control Register
+ */
+#define I2C_CCR_CCR							11
+//#define I2C_CCR_RESERVED					12
+//#define I2C_CCR_RESERVED					13
+#define I2C_CCR_DUTY						14
+#define I2C_CCR_FS							15
+
+
+
+
+
+
+
+
+
+
 
 
 
 #include "stm32f407xx_gpio_driver.h"
 #include "stm32f407xx_spi_driver.h"
+#include "stm32f407xx_i2c_driver.h"
 
 
 
