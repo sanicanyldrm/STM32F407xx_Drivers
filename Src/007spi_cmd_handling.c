@@ -50,7 +50,7 @@
 /*
  * GLOBAL VARIABLES SECTION
  */
-int g_counter = 5000;
+int g_counter = 500000;
 
 
 /*
@@ -60,7 +60,8 @@ void delay(void);
 void SPI2_GPIOInits(void);
 void SPI2_Inits(void);
 void GPIO_ButtonInit(void);
-uint8_t SPI_VerifyResponse(ackbyte);
+uint8_t SPI_VerifyResponse(uint8_t ackbyte);
+void Command_Control(uint8_t cmd_code);
 
 
 
@@ -68,7 +69,7 @@ uint8_t SPI_VerifyResponse(ackbyte);
 int main(void)
 {
 
-	uint8_t dummy_write = 0xFF;
+
 
 	//this function is used to initialize the GPIO pins to behave as SPI2 pins
 	SPI2_GPIOInits();
@@ -109,35 +110,38 @@ int main(void)
 		SPI_PeripheralControl(SPI2, ENABLE);
 
 
-		//1. CMD_LED_CTRL <pin_no> <value>
+		Command_Control(COMMAND_LED_CTRL);
 
-		uint8_t cmd_code = COMMAND_LED_CTRL;
-		uint8_t ackbyte;
-		uint8_t args[2];
-		uint8_t dummy_read;
+		//wait untill button pressed
+		while( ! GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0) );
 
-		//send command
-		SPI_SendData(SPI2, &cmd_code, 1);
+		//to avoid de-bouncing related issues 200ms of delay
+		delay();
 
-		//do dummy read to clear off the RXNE
-		SPI_ReceiveData(SPI2, &dummy_read, 1);
+		Command_Control(COMMAND_SENSOR_READ);
 
+		//wait untill button pressed
+		while( ! GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0) );
 
-		//send some dummy bits(1 bytes) to fetch the response from the slave
-		SPI_SendData(SPI2, &dummy_write, 1);
+		//to avoid de-bouncing related issues 200ms of delay
+		delay();
 
-		//read the ack byte received
-		SPI_ReceiveData(SPI2, &ackbyte, 1);
+		Command_Control(COMMAND_LED_READ);
 
-		if ( SPI_VerifyResponse(ackbyte) )
-		{
-			//send arguments
-			args[0] = LED_PIN;
-			args[1] = LED_ON;
-			SPI_SendData(SPI2, args, 2);
-		}
+		//wait untill button pressed
+		while( ! GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0) );
 
+		//to avoid de-bouncing related issues 200ms of delay
+		delay();
 
+		Command_Control(COMMAND_PRINT);
+
+		while( ! GPIO_ReadFromInputPin(GPIOA, GPIO_PIN_NO_0) );
+
+				//to avoid de-bouncing related issues 200ms of delay
+		delay();
+
+		Command_Control(COMMAND_ID_READ);
 
 		while( SPI_GetFlagStatus(SPI2, SPI_BUSY_FLAG) );
 
@@ -154,7 +158,7 @@ int main(void)
 
 void delay(void)
 {
-	for(uint32_t i = 0; i < g_counter; i++);
+	for(uint32_t i = 0; i < (g_counter/2); i++);
 }
 
 void SPI2_GPIOInits(void)
@@ -222,7 +226,7 @@ void GPIO_ButtonInit(void)
 }
 
 
-uint8_t SPI_VerifyResponse(ackbyte)
+uint8_t SPI_VerifyResponse(uint8_t ackbyte)
 {
 	if(ackbyte == 0xF5)
 	{
@@ -231,3 +235,167 @@ uint8_t SPI_VerifyResponse(ackbyte)
 	return 0;
 }
 
+
+void Command_Control(uint8_t cmd_code)
+{
+
+
+
+			uint8_t ackbyte = 0;
+			uint8_t args[2] = {0, 0};
+			uint8_t dummy_read = 0;
+			uint8_t dummy_write = 0xFF;
+
+
+			switch(cmd_code)
+			{
+			case COMMAND_LED_CTRL:
+
+				//send command COMMAND_LED_CTRL
+				SPI_SendData(SPI2, &cmd_code, 1);
+
+				//do dummy read to clear off the RXNE
+				SPI_ReceiveData(SPI2, &dummy_read, 1);
+
+
+				//send some dummy bits(1 bytes) to fetch the response from the slave
+				SPI_SendData(SPI2, &dummy_write, 1);
+
+				//read the ack byte received
+				SPI_ReceiveData(SPI2, &ackbyte, 1);
+
+				if ( SPI_VerifyResponse(ackbyte) )
+				{
+					//send arguments
+					args[0] = LED_PIN;
+					args[1] = LED_ON;
+					SPI_SendData(SPI2, args, 2);
+				}
+				break;
+
+			case COMMAND_SENSOR_READ:
+				//send command
+				SPI_SendData(SPI2,&cmd_code,1);
+
+				//do dummy read to clear off the RXNE
+				SPI_ReceiveData(SPI2,&dummy_read,1);
+
+				//Send some dummy byte to fetch the response from the slave
+				SPI_SendData(SPI2,&dummy_write,1);
+
+				//read the ack byte received
+				SPI_ReceiveData(SPI2,&ackbyte,1);
+
+				if( SPI_VerifyResponse(ackbyte))
+				{
+					args[0] = ANALOG_PIN0;
+
+					//send arguments
+					SPI_SendData(SPI2,args,1); //sending one byte of
+
+					//do dummy read to clear off the RXNE
+					SPI_ReceiveData(SPI2,&dummy_read,1);
+
+					//insert some delay so that slave can ready with the data
+					delay();
+
+					//Send some dummy bits (1 byte) fetch the response from the slave
+					SPI_SendData(SPI2,&dummy_write,1);
+
+					uint8_t analog_read;
+					SPI_ReceiveData(SPI2,&analog_read,1);
+
+				}
+				break;
+
+			case COMMAND_LED_READ:
+				//send command
+				SPI_SendData(SPI2,&cmd_code,1);
+
+				//do dummy read to clear off the RXNE
+				SPI_ReceiveData(SPI2,&dummy_read,1);
+
+				//Send some dummy byte to fetch the response from the slave
+				SPI_SendData(SPI2,&dummy_write,1);
+
+				//read the ack byte received
+				SPI_ReceiveData(SPI2,&ackbyte,1);
+
+				if( SPI_VerifyResponse(ackbyte))
+				{
+					args[0] = LED_PIN;
+
+					//send arguments
+					SPI_SendData(SPI2,args,1); //sending one byte of
+
+					//do dummy read to clear off the RXNE
+					SPI_ReceiveData(SPI2,&dummy_read,1);
+
+					//insert some delay so that slave can ready with the data
+					delay();
+
+					//Send some dummy bits (1 byte) fetch the response from the slave
+					SPI_SendData(SPI2,&dummy_write,1);
+
+					uint8_t led_status;
+					SPI_ReceiveData(SPI2,&led_status,1);
+
+				}
+				break;
+
+			case COMMAND_PRINT:
+				//send command
+				SPI_SendData(SPI2,&cmd_code,1);
+
+				//do dummy read to clear off the RXNE
+				SPI_ReceiveData(SPI2,&dummy_read,1);
+
+				//Send some dummy byte to fetch the response from the slave
+				SPI_SendData(SPI2,&dummy_write,1);
+
+				//read the ack byte received
+				SPI_ReceiveData(SPI2,&ackbyte,1);
+
+				uint8_t message[] = "Hello ! How are you ??";
+				if( SPI_VerifyResponse(ackbyte))
+				{
+					args[0] = strlen((char*)message);
+
+					//send arguments
+					SPI_SendData(SPI2,args,1); //sending length
+
+					//send message
+					SPI_SendData(SPI2,message,args[0]);
+
+				}
+				break;
+			case COMMAND_ID_READ:
+				//send command
+				SPI_SendData(SPI2,&cmd_code,1);
+
+				//do dummy read to clear off the RXNE
+				SPI_ReceiveData(SPI2,&dummy_read,1);
+
+				//Send some dummy byte to fetch the response from the slave
+				SPI_SendData(SPI2,&dummy_write,1);
+
+				//read the ack byte received
+				SPI_ReceiveData(SPI2,&ackbyte,1);
+
+				uint8_t id[11];
+				uint32_t i=0;
+				if( SPI_VerifyResponse(ackbyte))
+				{
+					//read 10 bytes id from the slave
+					for(  i = 0 ; i < 10 ; i++)
+					{
+						//send dummy byte to fetch data from slave
+						SPI_SendData(SPI2,&dummy_write,1);
+						SPI_ReceiveData(SPI2,&id[i],1);
+					}
+
+					id[11] = '\0';
+
+				}
+			}
+}
