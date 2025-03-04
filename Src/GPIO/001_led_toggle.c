@@ -21,7 +21,7 @@ void delay(void)
 
 int main()
 {
-
+	//deneme
 	GPIO_Handle_t GPIO_Led_Orange;
 	GPIO_Handle_t GPIO_Led_Green;
 	GPIO_Handle_t GPIO_Led_Red;

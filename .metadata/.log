@@ -1,0 +1,35 @@
+!SESSION 2025-03-04 21:11:05.556 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=tr_TR
+Framework arguments:  C:\Users\sanic.DESKTOP-1NSTN5M\Desktop\STM32F407_Driver_Development\STM32F407_CDD\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\sanic.DESKTOP-1NSTN5M\Desktop\STM32F407_Driver_Development\STM32F407_CDD\.cproject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-04 21:11:41.143
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-04 21:11:41.144
+!MESSAGE Log4j2 initialized with config file C:\Users\sanic.DESKTOP-1NSTN5M\Desktop\STM32F407_Driver_Development\STM32F407_CDD\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-04 21:11:44.998
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.jobs 2 2 2025-03-04 21:11:57.780
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ui.internal.Workbench$39
+!SESSION 2025-03-04 21:12:32.996 -----------------------------------------------
+eclipse.buildId=Version 1.17.0
+java.version=21.0.3
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=tr_TR
+Framework arguments:  C:\Users\sanic.DESKTOP-1NSTN5M\Desktop\STM32F407_Driver_Development\STM32F407_CDD\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\sanic.DESKTOP-1NSTN5M\Desktop\STM32F407_Driver_Development\STM32F407_CDD\.cproject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2025-03-04 21:12:44.346
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2025-03-04 21:12:44.349
+!MESSAGE Log4j2 initialized with config file C:\Users\sanic.DESKTOP-1NSTN5M\Desktop\STM32F407_Driver_Development\STM32F407_CDD\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-03-04 21:12:48.199
+!MESSAGE Started RMI Server, listening on port 41337
