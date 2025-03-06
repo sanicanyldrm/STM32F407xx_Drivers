@@ -357,7 +357,20 @@ typedef struct
 	vo uint32_t FLTR;				//I2C FLTR register											address offset: 0x24
 }I2C_RegDef_t;
 
+/*
+ * Periprheral register definition structure for USART
+ */
 
+typedef struct
+{
+	vo uint32_t SR;					//USART status register										address offset: 0x00
+	vo uint32_t DR;					//USART data register										address offset: 0x04
+	vo uint32_t BRR;				//USART baud rate register									address offset: 0x08
+	vo uint32_t CR1;				//USART control register 1									address offset: 0x0C
+	vo uint32_t CR2;				//USART control register 2									address offset: 0x10
+	vo uint32_t CR3;				//USART control register 3									address offset: 0x14
+	vo uint32_t GTPR;				//USART  guard time and prescaler register					address offset: 0x18
+}USART_RefDef_t;
 
 
 
