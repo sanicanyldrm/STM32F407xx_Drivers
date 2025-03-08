@@ -10,4 +10,5 @@
 ../Drivers/Src/stm32f407xx_USART_driver.c:465:9:USART_SendDataIT	2
 ../Drivers/Src/stm32f407xx_USART_driver.c:499:9:USART_ReceiveDataIT	2
 ../Drivers/Src/stm32f407xx_USART_driver.c:532:6:USART_SetBaudRate	5
-../Drivers/Src/stm32f407xx_USART_driver.c:609:6:USART_IRQHandling	4
+../Drivers/Src/stm32f407xx_USART_driver.c:609:6:USART_IRQHandling	23
+../Drivers/Src/stm32f407xx_USART_driver.c:901:28:USART_ApplicationEventCallback	1

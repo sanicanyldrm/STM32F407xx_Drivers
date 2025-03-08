@@ -15,7 +15,7 @@
 USART_Handle_t USART1_Handle;
 
 //Data
-uint8_t Data[1024];
+char msg[1024] = "Ajkummmm Seni Cok Seviyorum\n\r";
 void USART1_GPIO_Init();
 void USART1_Init();
 
@@ -28,14 +28,14 @@ void sw_delay(void)
 int main()
 {
 
-	Data[0] = 0x3C;
-	Data[1] = 0xA5;
-	Data[2] = 0x5A;
-	Data[3] = 0xA5;
-	Data[4] = 0x5A;
-	Data[5] = 0xA5;
-	Data[6] = 0x5A;
-	Data[7] = 0xFF;
+	//Data[0] = 0x3C;
+	//Data[1] = 0xA5;
+	//Data[2] = 0x5A;
+	//Data[3] = 0xA5;
+	//Data[4] = 0x5A;
+	//Data[5] = 0xA5;
+	//Data[6] = 0x5A;
+	//Data[7] = 0xFF;
 
 	USART1_GPIO_Init();
 
@@ -47,7 +47,7 @@ int main()
 
 	while(1)
 	{
-		USART_SendData(&USART1_Handle, Data, 8);
+		USART_SendData(&USART1_Handle, msg, strlen(msg));
 		sw_delay();
 	}
 

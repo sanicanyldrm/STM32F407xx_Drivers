@@ -557,6 +557,14 @@ typedef struct
 #define IRQ_NO_I2C3_ER						73
 
 
+#define IRQ_NO_USART1						37
+#define IRQ_NO_USART2						38
+#define IRQ_NO_USART3						39
+#define IRQ_NO_USART6						71
+#define IRQ_NO_UART4						52
+#define IRQ_NO_UART5						53
+
+
 /*
  *NVIC priority levels macros
  */
@@ -745,7 +753,7 @@ typedef struct
 #define USART_SR_TC							6
 #define USART_SR_TXE						7
 #define USART_SR_LBD						8
-#define USART_SR_TCS						9
+#define USART_SR_CTS						9
 
 /*
  * Bit position definition USART Control Register 2
