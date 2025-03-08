@@ -1,0 +1,4 @@
+../Src/USART/uart_tx.c:23:6:sw_delay	2
+../Src/USART/uart_tx.c:28:5:main	1
+../Src/USART/uart_tx.c:58:6:USART1_GPIO_Init	1
+../Src/USART/uart_tx.c:76:6:USART1_Init	1

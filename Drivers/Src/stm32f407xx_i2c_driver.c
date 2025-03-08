@@ -21,16 +21,6 @@ static void I2C_GenerateStopCondition(I2C_RegDef_t *pI2Cx);
 
 
 
-/*
- * Global variables
- */
-uint16_t AHB_PreScaler[8] = {2,4,8,16,64,128,256,512};
-uint16_t APB1_PreScaler[4] = {2,4,6,8};
-
-
-
-
-
 /**************************************************************************************************************************************************************
  *																API's helper functions
  **************************************************************************************************************************************************************/
@@ -40,97 +30,6 @@ static void I2C_GenerateStartCondition(I2C_RegDef_t *pI2Cx)
 	pI2Cx->CR1 |= (1 << I2C_CR1_START);
 }
 
-
-
-
-
-/******************************************************************************
- * @fn				- RCC_GetPLLOutputClock
- *
- * @brief			- This function has not been implemented
- *
- * @param[in]		- void
- *
- * @return			- 0
- *
- * @notes			-
- *****************************************************************************/
-uint32_t RCC_GetPLLOutputClock(void)
-{
-	//not used
-	return 0;
-}
-
-
-
-
-
-
-/******************************************************************************
- * @fn				- RCC_GetPCLK1Value
- *
- * @brief			- This function gets APB1 clock frequency
- *
- * @param[in]		- void
- *
- * @return			- uint32_t pclk1
- *
- * @notes			-
- *****************************************************************************/
-uint32_t RCC_GetPCLK1Value(void)
-{
-	uint32_t pclk1;
-	uint32_t SystemClk;
-
-	uint8_t clksrc;
-	uint8_t temp;
-	uint8_t ahbp;
-	uint8_t apb1p;
-
-	clksrc = ( RCC->CFGR >> 2 ) & ( 0x3 );
-
-	if(clksrc == 0)
-	{
-		SystemClk = 16000000;
-	}
-	else if(clksrc == 1)
-	{
-		SystemClk = 80000000;
-	}
-	else if(clksrc == 2)
-	{
-		SystemClk = RCC_GetPLLOutputClock();
-	}
-
-	//for ahb
-	temp = ( RCC->CFGR >> 4 ) & (0xF);
-
-	if(temp < 8)
-	{
-		ahbp = 1;
-	}
-	else
-	{
-		ahbp = AHB_PreScaler[temp -1];
-	}
-
-
-	//for apb1
-	temp = ( RCC->CFGR >> 10 ) & (0x7);
-
-	if(temp < 4)
-	{
-		apb1p = 1;
-	}
-	else
-	{
-		apb1p = APB1_PreScaler[temp -1];
-	}
-
-	pclk1 = ( (SystemClk / ahbp ) / apb1p );
-
-	return pclk1;
-}
 
 
 /******************************************************************************
