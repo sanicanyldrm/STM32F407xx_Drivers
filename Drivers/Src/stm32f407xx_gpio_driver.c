@@ -86,7 +86,7 @@ void GPIO_Init(GPIO_Handle_t *pGPIOHandle)
 	temp = 0;
 	//3. configure the pupd setting
 	temp = (pGPIOHandle->GPIO_PinConfig.GPIO_PinPuPdControl << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber));
-	pGPIOHandle->pGPIOx->PUPDR &= ~(0x3 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber); //clearing the related bit fields
+	pGPIOHandle->pGPIOx->PUPDR &= ~(0x3 << (2 * pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber)); //clearing the related bit fields
 	pGPIOHandle->pGPIOx->PUPDR |= temp;
 
 	temp = 0;

@@ -12,12 +12,12 @@
 #include "string.h"
 
 //USART1 Handle structure
-USART_Handle_t USART1_Handle;
+USART_Handle_t USART2_Handle;
 
 //Data
 char msg[1024] = "Ajkummmm Seni Cok Seviyorum\n\r";
-void USART1_GPIO_Init();
-void USART1_Init();
+void USART2_GPIO_Init();
+void USART2_Init();
 
 
 void sw_delay(void)
@@ -28,26 +28,18 @@ void sw_delay(void)
 int main()
 {
 
-	//Data[0] = 0x3C;
-	//Data[1] = 0xA5;
-	//Data[2] = 0x5A;
-	//Data[3] = 0xA5;
-	//Data[4] = 0x5A;
-	//Data[5] = 0xA5;
-	//Data[6] = 0x5A;
-	//Data[7] = 0xFF;
 
-	USART1_GPIO_Init();
+	USART2_GPIO_Init();
 
 
-	USART1_Init();
+	USART2_Init();
 
 
 	USART_PeripheralControl(USART2, ENABLE);
 
 	while(1)
 	{
-		USART_SendData(&USART1_Handle, msg, strlen(msg));
+		USART_SendData(&USART2_Handle, msg, strlen(msg));
 		sw_delay();
 	}
 
@@ -55,7 +47,7 @@ int main()
 	return 0;
 }
 
-void USART1_GPIO_Init(void)
+void USART2_GPIO_Init(void)
 {
 	GPIO_Handle_t USART1IO_Handle;
 	USART1IO_Handle.pGPIOx = GPIOA;
@@ -73,14 +65,14 @@ void USART1_GPIO_Init(void)
 }
 
 
-void USART1_Init()
+void USART2_Init()
 {
-	USART1_Handle.pUSARTx = USART2;
-	USART1_Handle.USART_Config.USART_Baud = USART_STD_BAUD_115200;
-	USART1_Handle.USART_Config.USART_HWFlowControl = USART_HW_FLOW_CTRL_NONE;
-	USART1_Handle.USART_Config.USART_Mode = USART_MODE_TXRX;
-	USART1_Handle.USART_Config.USART_NoOfStopBits = USART_STOPBITS_1;
-	USART1_Handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
-	USART1_Handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
-	USART_Init(&USART1_Handle);
+	USART2_Handle.pUSARTx = USART2;
+	USART2_Handle.USART_Config.USART_Baud = USART_STD_BAUD_115200;
+	USART2_Handle.USART_Config.USART_HWFlowControl = USART_HW_FLOW_CTRL_NONE;
+	USART2_Handle.USART_Config.USART_Mode = USART_MODE_TXRX;
+	USART2_Handle.USART_Config.USART_NoOfStopBits = USART_STOPBITS_1;
+	USART2_Handle.USART_Config.USART_WordLength = USART_WORDLEN_8BITS;
+	USART2_Handle.USART_Config.USART_ParityControl = USART_PARITY_DISABLE;
+	USART_Init(&USART2_Handle);
 }

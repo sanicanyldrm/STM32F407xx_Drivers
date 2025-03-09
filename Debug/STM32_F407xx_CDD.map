@@ -98,11 +98,9 @@ Discarded input sections
  .text.USART_SendDataIT
                 0x00000000       0x5c ./Drivers/Src/stm32f407xx_USART_driver.o
  .text.USART_ReceiveDataIT
-                0x00000000       0x4c ./Drivers/Src/stm32f407xx_USART_driver.o
+                0x00000000       0x52 ./Drivers/Src/stm32f407xx_USART_driver.o
  .text.USART_IRQHandling
-                0x00000000      0x302 ./Drivers/Src/stm32f407xx_USART_driver.o
- .text.USART_ApplicationEventCallback
-                0x00000000       0x18 ./Drivers/Src/stm32f407xx_USART_driver.o
+                0x00000000      0x344 ./Drivers/Src/stm32f407xx_USART_driver.o
  .debug_macro   0x00000000      0xac0 ./Drivers/Src/stm32f407xx_USART_driver.o
  .debug_macro   0x00000000       0x22 ./Drivers/Src/stm32f407xx_USART_driver.o
  .debug_macro   0x00000000       0x8e ./Drivers/Src/stm32f407xx_USART_driver.o
@@ -903,12 +901,12 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x08000be8                sw_delay
  .text.main     0x08000c14       0x3c ./Src/USART/uart_tx.o
                 0x08000c14                main
- .text.USART1_GPIO_Init
+ .text.USART2_GPIO_Init
                 0x08000c50       0x44 ./Src/USART/uart_tx.o
-                0x08000c50                USART1_GPIO_Init
- .text.USART1_Init
+                0x08000c50                USART2_GPIO_Init
+ .text.USART2_Init
                 0x08000c94       0x44 ./Src/USART/uart_tx.o
-                0x08000c94                USART1_Init
+                0x08000c94                USART2_Init
  .text.Reset_Handler
                 0x08000cd8       0x50 ./Startup/startup_stm32f407vgtx.o
                 0x08000cd8                Reset_Handler
@@ -1120,9 +1118,9 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  *(.bss)
  .bss           0x20000414       0x1c C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.bss*)
- .bss.USART1_Handle
+ .bss.USART2_Handle
                 0x20000430       0x24 ./Src/USART/uart_tx.o
-                0x20000430                USART1_Handle
+                0x20000430                USART2_Handle
  *(COMMON)
                 0x20000454                        . = ALIGN (0x4)
                 0x20000454                        _ebss = .
@@ -1174,44 +1172,44 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000     0x16d5
+.debug_info     0x00000000     0x16b6
  .debug_info    0x00000000      0x387 ./Drivers/Src/stm32f407xx_RCC_driver.o
- .debug_info    0x00000387      0x7b2 ./Drivers/Src/stm32f407xx_USART_driver.o
- .debug_info    0x00000b39      0x709 ./Drivers/Src/stm32f407xx_gpio_driver.o
- .debug_info    0x00001242      0x463 ./Src/USART/uart_tx.o
- .debug_info    0x000016a5       0x30 ./Startup/startup_stm32f407vgtx.o
+ .debug_info    0x00000387      0x793 ./Drivers/Src/stm32f407xx_USART_driver.o
+ .debug_info    0x00000b1a      0x709 ./Drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_info    0x00001223      0x463 ./Src/USART/uart_tx.o
+ .debug_info    0x00001686       0x30 ./Startup/startup_stm32f407vgtx.o
 
-.debug_abbrev   0x00000000      0x6c8
+.debug_abbrev   0x00000000      0x6c9
  .debug_abbrev  0x00000000      0x122 ./Drivers/Src/stm32f407xx_RCC_driver.o
- .debug_abbrev  0x00000122      0x212 ./Drivers/Src/stm32f407xx_USART_driver.o
- .debug_abbrev  0x00000334      0x1aa ./Drivers/Src/stm32f407xx_gpio_driver.o
- .debug_abbrev  0x000004de      0x1c6 ./Src/USART/uart_tx.o
- .debug_abbrev  0x000006a4       0x24 ./Startup/startup_stm32f407vgtx.o
+ .debug_abbrev  0x00000122      0x213 ./Drivers/Src/stm32f407xx_USART_driver.o
+ .debug_abbrev  0x00000335      0x1aa ./Drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_abbrev  0x000004df      0x1c6 ./Src/USART/uart_tx.o
+ .debug_abbrev  0x000006a5       0x24 ./Startup/startup_stm32f407vgtx.o
 
-.debug_aranges  0x00000000      0x188
+.debug_aranges  0x00000000      0x180
  .debug_aranges
                 0x00000000       0x30 ./Drivers/Src/stm32f407xx_RCC_driver.o
  .debug_aranges
-                0x00000030       0x88 ./Drivers/Src/stm32f407xx_USART_driver.o
+                0x00000030       0x80 ./Drivers/Src/stm32f407xx_USART_driver.o
  .debug_aranges
-                0x000000b8       0x70 ./Drivers/Src/stm32f407xx_gpio_driver.o
+                0x000000b0       0x70 ./Drivers/Src/stm32f407xx_gpio_driver.o
  .debug_aranges
-                0x00000128       0x38 ./Src/USART/uart_tx.o
+                0x00000120       0x38 ./Src/USART/uart_tx.o
  .debug_aranges
-                0x00000160       0x28 ./Startup/startup_stm32f407vgtx.o
+                0x00000158       0x28 ./Startup/startup_stm32f407vgtx.o
 
 .debug_rnglists
-                0x00000000      0x11a
+                0x00000000      0x114
  .debug_rnglists
                 0x00000000       0x21 ./Drivers/Src/stm32f407xx_RCC_driver.o
  .debug_rnglists
-                0x00000021       0x68 ./Drivers/Src/stm32f407xx_USART_driver.o
+                0x00000021       0x62 ./Drivers/Src/stm32f407xx_USART_driver.o
  .debug_rnglists
-                0x00000089       0x53 ./Drivers/Src/stm32f407xx_gpio_driver.o
+                0x00000083       0x53 ./Drivers/Src/stm32f407xx_gpio_driver.o
  .debug_rnglists
-                0x000000dc       0x25 ./Src/USART/uart_tx.o
+                0x000000d6       0x25 ./Src/USART/uart_tx.o
  .debug_rnglists
-                0x00000101       0x19 ./Startup/startup_stm32f407vgtx.o
+                0x000000fb       0x19 ./Startup/startup_stm32f407vgtx.o
 
 .debug_macro    0x00000000     0x2876
  .debug_macro   0x00000000       0xc2 ./Drivers/Src/stm32f407xx_RCC_driver.o
@@ -1249,12 +1247,12 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x00002821       0x35 ./Src/USART/uart_tx.o
  .debug_macro   0x00002856       0x20 ./Src/USART/uart_tx.o
 
-.debug_line     0x00000000     0x2422
+.debug_line     0x00000000     0x2432
  .debug_line    0x00000000      0x61b ./Drivers/Src/stm32f407xx_RCC_driver.o
- .debug_line    0x0000061b      0xb8e ./Drivers/Src/stm32f407xx_USART_driver.o
- .debug_line    0x000011a9      0xae5 ./Drivers/Src/stm32f407xx_gpio_driver.o
- .debug_line    0x00001c8e      0x719 ./Src/USART/uart_tx.o
- .debug_line    0x000023a7       0x7b ./Startup/startup_stm32f407vgtx.o
+ .debug_line    0x0000061b      0xb9d ./Drivers/Src/stm32f407xx_USART_driver.o
+ .debug_line    0x000011b8      0xae8 ./Drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_line    0x00001ca0      0x717 ./Src/USART/uart_tx.o
+ .debug_line    0x000023b7       0x7b ./Startup/startup_stm32f407vgtx.o
 
 .debug_str      0x00000000     0xa5df
  .debug_str     0x00000000     0x6ec2 ./Drivers/Src/stm32f407xx_RCC_driver.o
@@ -1275,12 +1273,12 @@ LOAD C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .comment       0x00000043       0x44 ./Drivers/Src/stm32f407xx_gpio_driver.o
  .comment       0x00000043       0x44 ./Src/USART/uart_tx.o
 
-.debug_frame    0x00000000      0x534
+.debug_frame    0x00000000      0x50c
  .debug_frame   0x00000000       0x7c ./Drivers/Src/stm32f407xx_RCC_driver.o
- .debug_frame   0x0000007c      0x230 ./Drivers/Src/stm32f407xx_USART_driver.o
- .debug_frame   0x000002ac      0x1c8 ./Drivers/Src/stm32f407xx_gpio_driver.o
- .debug_frame   0x00000474       0x94 ./Src/USART/uart_tx.o
- .debug_frame   0x00000508       0x2c C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x0000007c      0x208 ./Drivers/Src/stm32f407xx_USART_driver.o
+ .debug_frame   0x00000284      0x1c8 ./Drivers/Src/stm32f407xx_gpio_driver.o
+ .debug_frame   0x0000044c       0x94 ./Src/USART/uart_tx.o
+ .debug_frame   0x000004e0       0x2c C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
 
 .debug_line_str
                 0x00000000       0x7b
