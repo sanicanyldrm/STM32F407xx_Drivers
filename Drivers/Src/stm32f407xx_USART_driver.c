@@ -286,7 +286,18 @@ void USART_Init(USART_Handle_t *pUSARTHandle)
 	//Code to configure the number of stop bits inserted during USART frame transmission
 	tempRegister |= pUSARTHandle->USART_Config.USART_NoOfStopBits << USART_CR2_STOP;
 
+	if(pUSARTHandle->USART_Config.USART_LINMode == USART_LIN_MODE_ENABLE)
+	{
+		tempRegister |= ( pUSARTHandle->USART_Config.USART_LINMode << USART_CR2_LINEN );
+	}
+	else
+	{
+		//do nothing
+	}
+
 	pUSARTHandle->pUSARTx->CR2 = tempRegister;
+
+
 
 	/******************************** Configuration of CR3******************************************/
 

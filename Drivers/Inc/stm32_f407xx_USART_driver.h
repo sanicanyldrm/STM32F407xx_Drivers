@@ -15,6 +15,7 @@ typedef struct
 	uint8_t USART_WordLength;
 	uint8_t USART_ParityControl;
 	uint8_t USART_HWFlowControl;
+	uint8_t USART_LINMode;
 }USART_Config_t;
 
 
@@ -97,6 +98,13 @@ typedef struct
 #define USART_HW_FLOW_CTRL_CTS    	1
 #define USART_HW_FLOW_CTRL_RTS    	2
 #define USART_HW_FLOW_CTRL_CTS_RTS	3
+
+/*
+ * @USART_LINMode
+ * Possible options for USART_LINMode
+ */
+#define USART_LIN_MODE_ENABLE		1
+#define USART_LIN_MODE_DISABLE		0
 
 
 /*

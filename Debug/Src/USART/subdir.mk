@@ -5,13 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Src/USART/uart_tx.c 
+../Src/USART/USART_LIN.c 
 
 OBJS += \
-./Src/USART/uart_tx.o 
+./Src/USART/USART_LIN.o 
 
 C_DEPS += \
-./Src/USART/uart_tx.d 
+./Src/USART/USART_LIN.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +21,7 @@ Src/USART/%.o Src/USART/%.su Src/USART/%.cyclo: ../Src/USART/%.c Src/USART/subdi
 clean: clean-Src-2f-USART
 
 clean-Src-2f-USART:
-	-$(RM) ./Src/USART/uart_tx.cyclo ./Src/USART/uart_tx.d ./Src/USART/uart_tx.o ./Src/USART/uart_tx.su
+	-$(RM) ./Src/USART/USART_LIN.cyclo ./Src/USART/USART_LIN.d ./Src/USART/USART_LIN.o ./Src/USART/USART_LIN.su
 
 .PHONY: clean-Src-2f-USART
 
