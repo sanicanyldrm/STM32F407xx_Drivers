@@ -4,7 +4,7 @@
  *  Created on: Mar 8, 2025
  *      Author: sanic
  */
-#define LIN_USART_MODE 			1
+#define LIN_USART_MODE 			0
 
 
 

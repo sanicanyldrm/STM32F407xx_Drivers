@@ -1,0 +1,6 @@
+../Src/USART/usart_rx_interrupt.c:49:6:sw_delay	2
+../Src/USART/usart_rx_interrupt.c:56:5:main	2
+../Src/USART/usart_rx_interrupt.c:83:6:USART2_GPIO_Init	1
+../Src/USART/usart_rx_interrupt.c:123:6:USART2_Init	1
+../Src/USART/usart_rx_interrupt.c:136:6:USART2_IRQHandler	1
+../Src/USART/usart_rx_interrupt.c:141:6:USART_ApplicationEventCallback	2

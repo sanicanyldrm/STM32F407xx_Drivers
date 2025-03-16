@@ -1,4 +1,4 @@
-Src/USART/USART_LIN.o: ../Src/USART/USART_LIN.c \
+Src/USART/usart_rx_interrupt.o: ../Src/USART/usart_rx_interrupt.c \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_gpio_driver.h \

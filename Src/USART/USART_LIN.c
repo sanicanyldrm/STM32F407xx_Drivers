@@ -34,19 +34,21 @@ int main(void)
 
 		USART_PeripheralControl(USART2, ENABLE);
 
-		TxData[0] = 0x55; //sync field
-		TxData[1] = PID_Calculate(0x34);
 
-		for(int i= 0; i < 8; i++)
-		{
-			TxData[i + 2] = i;
-		}
-
-		TxData[10] = Checksum_Calculate(TxData[1], TxData+2, 8);
 
 		while(1)
 		{
+			TxData[0] = 0x55; //sync field
+			TxData[1] = PID_Calculate(0x34);
 
+			for(int i= 0; i < 8; i++)
+			{
+				TxData[i + 2] = i;
+			}
+
+			TxData[10] = Checksum_Calculate(TxData[1], TxData+2, 8);
+
+			USART_LIN_Handle.pUSARTx->CR1 |= (1 << USART_CR1_SBK);
 			USART_SendData(&USART_LIN_Handle, TxData, 10);
 			sw_delay();
 		}
