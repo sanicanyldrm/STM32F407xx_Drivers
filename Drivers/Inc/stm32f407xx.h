@@ -52,9 +52,10 @@
  */
 #define NO_PR_BITS_IMPLEMENTED					4
 
-
-
-
+/*
+ * Other defines
+ */
+#define INLINE static inline
 
 /**************************************************************************************************************************************************************
  * Base address of these peripheral
@@ -485,6 +486,7 @@ typedef struct
 #define SYSCFG_PCLK_DI()					( RCC->APB2ENR &= ~(1 << 14) )
 
 
+
 /*
  * Macros to reset GPIOx peripherals
  */
@@ -505,6 +507,27 @@ typedef struct
 #define I2C1_REG_RESET()					do{ ( RCC->APB1RSTR |= (1 << 21) ); ( RCC->APB1RSTR &= ~(1 << 21) ); }while(0)
 #define I2C2_REG_RESET()					do{ ( RCC->APB1RSTR |= (1 << 22) ); ( RCC->APB1RSTR &= ~(1 << 22) ); }while(0)
 #define I2C3_REG_RESET()					do{ ( RCC->APB1RSTR |= (1 << 23) ); ( RCC->APB1RSTR &= ~(1 << 23) ); }while(0)
+
+/*
+ * Macros to reset USARTx peripherals
+ */
+#define USART2_REG_RESET()					do { RCC->APB1RSTR |= (1 << 17); \
+											  RCC->APB1RSTR &= ~(1 << 17); } while(0)
+
+#define USART3_REG_RESET()					do { RCC->APB1RSTR |= (1 << 18); \
+											  RCC->APB1RSTR &= ~(1 << 18); } while(0)
+
+#define UART4_REG_RESET()					do { RCC->APB1RSTR |= (1 << 19); \
+											  RCC->APB1RSTR &= ~(1 << 19); } while(0)
+
+#define UART5_REG_RESET()					do { RCC->APB1RSTR |= (1 << 20); \
+											  RCC->APB1RSTR &= ~(1 << 20); } while(0)
+
+#define USART1_REG_RESET()					do { RCC->APB2RSTR |= (1 << 19); \
+											  RCC->APB2RSTR &= ~(1 << 19); } while(0)
+
+#define USART6_REG_RESET()					do { RCC->APB2RSTR |= (1 << 20); \
+											  RCC->APB2RSTR &= ~(1 << 20); } while(0)
 
 
 

@@ -113,6 +113,7 @@ typedef struct
 #define USART_FLAG_TXE 					(1 << USART_SR_TXE)
 #define USART_FLAG_TC					(1 << USART_SR_TC)
 #define USART_FLAG_RXNE					(1 << USART_SR_RXNE)
+#define USART_FLAG_LBD					(1 << USART_SR_LBD)
 
 
 /*

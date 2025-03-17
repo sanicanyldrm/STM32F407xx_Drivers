@@ -150,6 +150,7 @@ void USART_ApplicationEventCallback( USART_Handle_t *pUSARTHandle, uint8_t ApEv)
 		PID = Master_RxData.PID;
 		NAD = Master_RxData.NAD;
 		PCI = Master_RxData.PCI;
+		SID = Master_RxData.SID;
 
 		pData[0] = Master_RxData.D1;
 		pData[1] = Master_RxData.D2;
@@ -157,13 +158,13 @@ void USART_ApplicationEventCallback( USART_Handle_t *pUSARTHandle, uint8_t ApEv)
 		pData[3] = Master_RxData.D4;
 		pData[4] = Master_RxData.D5;
 
-		if(PID = 0x3C)
+		if(PID == 0x3CU)
 		{
-			if(NAD = SLAVE_NAD)
+			if(NAD == SLAVE_NAD)
 			{
-				if(PCI = 0x06)
+				if(PCI == 0x06U)
 				{
-					if(SID = B0)
+					if(SID == B0)
 					{
 						GPIO_WriteToOutputPin(GPIOD, 13, SET);
 						GPIO_WriteToOutputPin(GPIOD, 14, RESET);
