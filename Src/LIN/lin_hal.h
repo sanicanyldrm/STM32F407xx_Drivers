@@ -13,14 +13,14 @@
 #include "lin_config.h"
 #include "lin_protocol.h"
 
+uint8_t buffer_index = 0;
+uint8_t RxBuffer[9];
 
-USART_Handle_t LIN_Handle_Config;
 
 
-
-extern void LIN_Init(void);
-extern void LIN_DeInit(void);
-extern void LIN_ISR(void);
+void LIN_Init(void);
+void LIN_DeInit(void);
+void LIN_ISR(void);
 
 
 #endif /* LIN_LIN_HAL_H_ */

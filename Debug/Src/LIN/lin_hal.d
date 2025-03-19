@@ -1,15 +1,21 @@
-Src/USART/usart_rx_interrupt.o: ../Src/USART/usart_rx_interrupt.c \
- C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h \
+Src/LIN/lin_hal.o: ../Src/LIN/lin_hal.c ../Src/LIN/lin_hal.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_gpio_driver.h \
+ C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_spi_driver.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_i2c_driver.h \
  C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h \
- C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_RCC_driver.h
-C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h:
+ C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_RCC_driver.h \
+ C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h \
+ ../Src/LIN/lin_config.h ../Src/LIN/lin_protocol.h
+../Src/LIN/lin_hal.h:
 C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx.h:
 C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_gpio_driver.h:
+C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx.h:
 C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_spi_driver.h:
 C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_i2c_driver.h:
 C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h:
 C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32f407xx_RCC_driver.h:
+C:/Users/sanic.DESKTOP-1NSTN5M/Desktop/STM32F407_Driver_Development/STM32F407_CDD/Drivers/Inc/stm32_f407xx_USART_driver.h:
+../Src/LIN/lin_config.h:
+../Src/LIN/lin_protocol.h:

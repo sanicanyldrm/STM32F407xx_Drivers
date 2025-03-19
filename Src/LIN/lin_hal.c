@@ -8,11 +8,18 @@
 
 #include "lin_hal.h"
 
-static lin_driver_state_t LIN_driver_state = LIN_UNINIT;
+static lin_driver_state_t LIN_driver_state = LIN_RECEIVE_PID;
 static uint8_t received_frame_id;
 static uint8_t received_frame_pid;
+USART_Handle_t LIN_Handle_Config;
 
+typedef enum
+{
+	USART_READY_FOR_RX = 0,
+	USART_BUSY_FOR_RX
+}Usart_State_t;
 
+Usart_State_t Usart_State;
 
 
 INLINE uint8_t LIN_Get_Flag_Status(uint32_t flag)
@@ -39,6 +46,8 @@ INLINE void LIN_Clear_Flag_Status(uint32_t flag)
 INLINE void LIN_Get_Rx_Data(uint8_t *pRxBuffer)
 {
 	*pRxBuffer = (uint8_t)USART2->DR;
+
+	//USART2->CR2 |= ~(1 << USART_CR1_RXNEIE);
 }
 
 
@@ -75,12 +84,17 @@ INLINE void LIN_Process_Data(uint8_t data)
 			received_frame_pid = temp_byte;
 			if(received_frame_id != 0xFF)
 			{
-
+				LIN_driver_state = LIN_RECEIVE_DATA;
 			}
 			else
 			{
 				//if received frame id is 0xFF, invalid frame is received
+
 			}
+			break;
+		case LIN_RECEIVE_DATA:
+			rx_buf[index++]
+
 			break;
 
 		default:
@@ -147,6 +161,7 @@ void LIN_ISR(void)
 
 
 }
+
 
 
 

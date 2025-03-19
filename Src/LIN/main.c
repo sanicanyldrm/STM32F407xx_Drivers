@@ -5,6 +5,7 @@
  *      Author: can.yildirim
  */
 #include "stm32f407xx.h"
+#include "lin_hal.h"
 
 
 void GPIO_Usart_Pins_Init(void)
@@ -37,26 +38,8 @@ void GPIO_Usart_Pins_Init(void)
 void System_Init(void)
 {
 	GPIO_Usart_Pins_Init();
+	LIN_Init();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -64,6 +47,25 @@ void System_Init(void)
 int main(void)
 {
 
+	System_Init();
+
+	USART_IRQInterruptConfig(IRQ_NO_USART2,ENABLE);
+
+	USART_PeripheralControl(USART2,ENABLE);
+
+	USART2->CR1 |= (1 << USART_CR1_RXNEIE);
+
+	while(1)
+	{
+		//USART2->CR1 |= (1 << USART_CR1_RXNEIE);
+	}
 
 	return 0;
+}
+
+
+
+void USART2_IRQHandler(void)
+{
+	LIN_ISR();
 }

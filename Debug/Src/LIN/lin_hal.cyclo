@@ -1,0 +1,8 @@
+../Src/LIN/lin_hal.c:25:16:LIN_Get_Flag_Status	2
+../Src/LIN/lin_hal.c:39:13:LIN_Clear_Flag_Status	1
+../Src/LIN/lin_hal.c:46:13:LIN_Get_Rx_Data	1
+../Src/LIN/lin_hal.c:56:13:LIN_GoTo_Idle_State	1
+../Src/LIN/lin_hal.c:66:13:LIN_Process_Data	7
+../Src/LIN/lin_hal.c:109:6:LIN_Init	1
+../Src/LIN/lin_hal.c:130:6:LIN_DeInit	1
+../Src/LIN/lin_hal.c:137:6:LIN_ISR	3

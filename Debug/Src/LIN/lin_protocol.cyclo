@@ -1,0 +1,2 @@
+../Src/LIN/lin_protocol.c:13:9:LIN_Process_PID	3
+../Src/LIN/lin_protocol.c:44:23:Check_Parity	2
