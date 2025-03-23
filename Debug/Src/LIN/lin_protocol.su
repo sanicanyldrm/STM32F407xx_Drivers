@@ -1,2 +1,5 @@
-../Src/LIN/lin_protocol.c:13:9:LIN_Process_PID	24	static
-../Src/LIN/lin_protocol.c:44:23:Check_Parity	32	static
+../Src/LIN/lin_protocol.c:23:9:LIN_Process_PID	24	static
+../Src/LIN/lin_protocol.c:54:23:Check_Parity	32	static
+../Src/LIN/lin_protocol.c:77:6:Lin_SetFrameState	16	static
+../Src/LIN/lin_protocol.c:82:19:Lin_GetFrameState	4	static
+../Src/LIN/lin_protocol.c:87:6:Lin_StateMachine	16	static

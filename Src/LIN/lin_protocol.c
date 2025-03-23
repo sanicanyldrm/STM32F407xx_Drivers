@@ -6,6 +6,16 @@
  */
 
 #include "lin_protocol.h"
+/***************************************************************************
+ * Global Variable Definitions
+ **************************************************************************/
+static LinFrameStateType Lin_Frame_State = FRAME_IDLE;
+
+
+
+
+
+
 
 static inline uint8_t Check_Parity(uint8_t pid);
 
@@ -62,3 +72,30 @@ static inline uint8_t Check_Parity(uint8_t pid)
 
 	return parity;
 }
+
+
+void Lin_SetFrameState (LinFrameStateType CurrentFrameState)
+{
+	Lin_Frame_State = CurrentFrameState;
+}
+
+LinFrameStateType Lin_GetFrameState(void)
+{
+	return Lin_Frame_State;
+}
+
+void Lin_StateMachine(uint8_t ReceivedData)
+{
+	switch(Lin_GetFrameState())
+	{
+	case FRAME_IDLE:
+		break;
+	case FRAME_BREAK_RECEIVED:
+		break;
+	case FRAME_SYNC_RECEIVED:
+		break;
+
+
+	}
+}
+

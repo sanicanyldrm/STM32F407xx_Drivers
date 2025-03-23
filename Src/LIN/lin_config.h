@@ -11,13 +11,14 @@
 #include "stm32f407xx.h"
 
 
-#define LIN_MODE 						0
+#define LIN_MODE 						1
 #define FEATURE_SLEEP_MODE				0
 
 
 
 #define LIN_FLAG_LBD					(1 << USART_SR_LBD)
 #define LIN_FLAG_RXNE					(1 << USART_SR_RXNE)
+#define LIN_USART_BUFFER				(USART2->DR)
 
 
 #define LIN_SYNC_FIELD					0x55U

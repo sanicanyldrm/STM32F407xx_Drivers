@@ -53,11 +53,12 @@ int main(void)
 
 	USART_PeripheralControl(USART2,ENABLE);
 
-	USART2->CR1 |= (1 << USART_CR1_RXNEIE);
+	USART2->CR2 |= (1 << USART_CR2_LBDIE);
+	//USART2->CR1 |= (1 << USART_CR1_RXNEIE);
 
 	while(1)
 	{
-		//USART2->CR1 |= (1 << USART_CR1_RXNEIE);
+
 	}
 
 	return 0;
@@ -69,3 +70,6 @@ void USART2_IRQHandler(void)
 {
 	LIN_ISR();
 }
+
+
+

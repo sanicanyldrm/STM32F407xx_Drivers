@@ -16,6 +16,7 @@ typedef struct
 	uint8_t USART_ParityControl;
 	uint8_t USART_HWFlowControl;
 	uint8_t USART_LINMode;
+	uint8_t USART_LINModeBreakDetectionLength;
 }USART_Config_t;
 
 
@@ -106,6 +107,11 @@ typedef struct
 #define USART_LIN_MODE_ENABLE		1
 #define USART_LIN_MODE_DISABLE		0
 
+/*
+ * @USART_LINModeBreakDetectionLength
+ */
+#define USART_LIN_MODE_BRK_DETECTION_11		1
+#define USART_LIN_MODE_BRK_DETECTION_10		0
 
 /*
  * USART Flags

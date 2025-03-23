@@ -295,6 +295,19 @@ void USART_Init(USART_Handle_t *pUSARTHandle)
 		//do nothing
 	}
 
+	if(pUSARTHandle->USART_Config.USART_LINModeBreakDetectionLength == USART_LIN_MODE_BRK_DETECTION_10)
+	{
+		tempRegister |= (pUSARTHandle->USART_Config.USART_LINModeBreakDetectionLength << USART_CR2_LBDL);
+	}
+	else if(pUSARTHandle->USART_Config.USART_LINModeBreakDetectionLength == USART_LIN_MODE_BRK_DETECTION_11)
+	{
+		tempRegister |= (pUSARTHandle->USART_Config.USART_LINModeBreakDetectionLength << USART_CR2_LBDL);
+	}
+	else
+	{
+		//do nothing
+	}
+
 	pUSARTHandle->pUSARTx->CR2 = tempRegister;
 
 
