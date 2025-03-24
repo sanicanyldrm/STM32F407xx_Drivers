@@ -6,6 +6,7 @@
  */
 
 #include "lin_protocol.h"
+#include "lin_config.h"
 /***************************************************************************
  * Global Variable Definitions
  **************************************************************************/
@@ -17,10 +18,10 @@ static LinFrameStateType Lin_Frame_State = FRAME_IDLE;
 
 
 
-static inline uint8_t Check_Parity(uint8_t pid);
 
 
-uint8_t LIN_Process_PID(uint8_t pid, uint8_t process_type)
+
+uint8_t Lin_Process_PID(uint8_t pid, uint8_t process_type)
 {
 	uint8_t parity;
 	uint8_t ret_val;
@@ -51,7 +52,7 @@ uint8_t LIN_Process_PID(uint8_t pid, uint8_t process_type)
 }
 
 
-static inline uint8_t Check_Parity(uint8_t pid)
+uint8_t Lin_CheckParity(uint8_t pid)
 {
 	uint8_t ID_Buf[6];
 	uint8_t P0;
@@ -84,6 +85,13 @@ LinFrameStateType Lin_GetFrameState(void)
 	return Lin_Frame_State;
 }
 
+static void Lin_FrameSyncReceived(const uint8_t ReceivedData)
+{
+	if(ReceivedData == LIN_SYNC_FIELD)
+	{
+		Lin_SetFrameState(FRAME_PID);
+	}
+}
 void Lin_StateMachine(uint8_t ReceivedData)
 {
 	switch(Lin_GetFrameState())
@@ -93,7 +101,9 @@ void Lin_StateMachine(uint8_t ReceivedData)
 	case FRAME_BREAK_RECEIVED:
 		break;
 	case FRAME_SYNC_RECEIVED:
+		Lin_FrameSyncReceived(ReceivedData);
 		break;
+
 
 
 	}

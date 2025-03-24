@@ -11,6 +11,7 @@
 #include "lin_config.h"
 #include "stm32f407xx.h"
 #include "stm32_f407xx_USART_driver.h"
+#include "stm32f407xx_gpio_driver.h"
 
 
 
@@ -58,21 +59,39 @@ INLINE void LIN_GoTo_Idle_State(void)
 
 INLINE void LIN_USART_Set_Break(void)
 {
-	uint8_t Data = LIN_USART_BUFFER;
+
+	static uint8_t Data;
+
+	while(!LIN_Get_Flag_Status(USART_FLAG_RXNE));
+	Data = LIN_USART_BUFFER;
+
+	//GPIO_WriteToOutputPin(GPIOD, 12, SET);
+	//GPIO_WriteToOutputPin(GPIOD, 12, RESET);
+	//Data = LIN_USART_BUFFER;
+	uint8_t Data_2;
+
+
 	USART2->CR2 &= ~(1 << USART_CR2_LBDIE);
 	LIN_Clear_Flag_Status(LIN_FLAG_LBD);
 	Lin_SetFrameState(FRAME_BREAK_RECEIVED);
 
-
 	if(Lin_GetFrameState() == FRAME_BREAK_RECEIVED)
 	{
-		//USART2->CR1 |= (1 << USART_CR1_RXNEIE);
-		//7USART2->CR1 &= ~(1 << USART_CR1_RXNEIE);
-		uint8_t Data_2 = LIN_USART_BUFFER;
-		if(LIN_USART_BUFFER == LIN_SYNC_FIELD)
+
+		while(!LIN_Get_Flag_Status(USART_FLAG_RXNE))
+		{
+			GPIO_WriteToOutputPin(GPIOD, 12, SET);
+		}
+		GPIO_WriteToOutputPin(GPIOD, 12, RESET);
+
+		Data_2 = LIN_USART_BUFFER;
+		RxData[frame_index] = Data_2;
+		frame_index++;
+
+		if(Data_2 == LIN_SYNC_FIELD)
 		{
 			Lin_SetFrameState(FRAME_SYNC_RECEIVED);
-			Lin_StateMachine(Data);
+			Lin_StateMachine(Data_2);
 		}
 	}
 	USART2->CR1 |= (1 << USART_CR1_RXNEIE);
@@ -84,25 +103,27 @@ INLINE void LIN_USART_Set_Break(void)
 void LIN_ISR(void)
 {
 
-
+	uint32_t temp1 = USART2->CR2 & (1 << USART_CR2_LBDIE);
+	uint32_t temp2 = USART2->CR1 & ( 1 << USART_CR1_RXNEIE);
 	//An interrupt is generated when LBD=1 if LBDIE=1
-	if(LIN_Get_Flag_Status(LIN_FLAG_LBD) != 0x00U)
+	if(LIN_Get_Flag_Status(LIN_FLAG_LBD) != 0x00U && temp1)
 	{
 		LIN_USART_Set_Break();
 	}
-	else if(LIN_Get_Flag_Status(LIN_FLAG_RXNE))
+	else if(LIN_Get_Flag_Status(LIN_FLAG_RXNE) && temp2)
 	{
 
 		RxData[frame_index] = USART2->DR;
 		frame_index++;
-		//}
-		//else
-		//{
-			//do nothing
-		//}
-		if(frame_index == 10)
+
+		if(frame_index > 10)
 		{
-			USART2->CR2 |= (1 << USART_CR2_LINEN);
+			USART2->CR1 &= ~(1 << USART_CR1_RXNEIE);
+			//USART2->CR2 |= (1 << USART_CR2_LINEN);
+			USART2->CR2 |= (1 << USART_CR2_LBDIE);
+			Lin_SetFrameState(FRAME_IDLE);
+			frame_index = 0;
+
 		}
 
 	}

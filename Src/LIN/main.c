@@ -6,7 +6,22 @@
  */
 #include "stm32f407xx.h"
 #include "lin_hal.h"
+#include "stm32f407xx_gpio_driver.h"
 
+void GPIO_Led_Init()
+{
+	GPIO_Handle_t GPIO_Led_Green;
+	GPIO_Led_Green.pGPIOx = GPIOD;
+	GPIO_Led_Green.GPIO_PinConfig.GPIO_PinNumber = 12;
+	//alternate function is not necessary
+	GPIO_Led_Green.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+	GPIO_Led_Green.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_FAST;
+	GPIO_Led_Green.GPIO_PinConfig.GPIO_PinOPType = GPIO_OP_TYPE_PP;
+	GPIO_Led_Green.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_NO_PUPD;
+
+
+	GPIO_Init(&GPIO_Led_Green);
+}
 
 void GPIO_Usart_Pins_Init(void)
 {
@@ -39,6 +54,7 @@ void System_Init(void)
 {
 	GPIO_Usart_Pins_Init();
 	LIN_Init();
+	GPIO_Led_Init();
 }
 
 
